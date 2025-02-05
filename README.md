@@ -1,4 +1,7 @@
+
 ![image alt](https://github.com/boolean-cpu/Voltmeter-GUI/blob/main/Voltmeter1.png?raw=true)
+![image alt](https://github.com/boolean-cpu/Voltmeter-GUI/blob/main/Voltmeter2.png?raw=true)
+![image alt](https://github.com/boolean-cpu/Voltmeter-GUI/blob/main/Voltmeter3.png?raw=true)
 # Voltmeter-GUI
 This project is the GUI of a microcontroller-based voltmeter created with PyQT. It works with serial communication and includes functionalities like data logging and plotting of real-time voltage reading values. Data can be logged locally to the machine or to the database
 

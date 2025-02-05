@@ -1,0 +1,42 @@
+@startuml
+class Worker {
+    run()
+        __init__()
+}
+class MainWindow {
+    Refresh()
+    is_connected()
+    Login1()
+    Create1()
+    Checking()
+    Putty()
+    FToPlot()
+    Plotting()
+    StopLogging()
+    Logging()
+    Fpath()
+    Server()
+    LogPath()
+    changePrecision()
+    updateScalaCount()
+    updateMaxVal()
+    updateMinVal()
+    updateSliderValue()
+    updateGaugeValue()
+    startWorkerThread()
+    RupdateGaugeValue()
+    reset_log()
+        ui
+    Data
+    putty_process
+    w
+    w
+    w
+    process
+    worker
+    thread
+    __init__()
+}
+QObject <|-- Worker
+QMainWindow <|-- MainWindow
+@enduml

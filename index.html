@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Futuristic Voltmeter Display</title>
+    <style>
+        body {
+            background-color: #0e0e0e;
+            color: #00ff00;
+            font-family: 'Courier New', Courier, monospace;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            flex-direction: column;
+        }
+        .container {
+            text-align: center;
+            border: 2px solid #00ff00;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        .voltage-display {
+            font-size: 4em;
+            margin: 20px 0;
+        }
+        .header {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+        #gauge {
+            width: 300px;
+            height: 160px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">Voltmeter Reading</div>
+        <div class="voltage-display" id="voltage">0.00 V</div>
+    </div>
+    <div id="gauge"></div>
+
+    <!-- Raphael and JustGage libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/raphael@2.3.0/raphael.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/justgage@1.3.5/justgage.min.js"></script>
+
+    <script>
+        window.onload = function() {
+            var g = new JustGage({
+                id: "gauge",
+                value: 0,
+                min: -15,
+                max: 15,
+                title: "Voltage",
+                label: "V",
+                pointer: true,
+                gaugeWidthScale: 0.6,
+                pointerOptions: {
+                    toplength: -15,
+                    bottomlength: 10,
+                    bottomwidth: 12,
+                    color: '#00ff00'
+                },
+                customSectors: [{
+                    color: "#ff0000",
+                    lo: -15,
+                    hi: 15
+                },{
+                    color: "#00ff00",
+                    lo: 2,
+                    hi: 8
+                },{
+                    color: "#ff0000",
+                    lo: 8,
+                    hi: 10
+                }]
+            });
+
+            // Listen for server-sent events from Flask
+            var eventSource = new EventSource('/voltage-stream');
+            eventSource.onmessage = function(event) {
+                var voltage = parseFloat(event.data);
+                document.getElementById('voltage').textContent = voltage.toFixed(2) + ' V';
+                g.refresh(voltage);
+            };
+        };
+    </script>
+</body>
+</html>

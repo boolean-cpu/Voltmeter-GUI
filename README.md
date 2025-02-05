@@ -9,3 +9,6 @@ Link PuTTy logfile to the putty.log file in the folder
 
 Python Module Requirement:
 PyQT custom widgets https://khamisikibet.github.io/Docs-QT-PyQt-PySide-Custom-Widgets/
+
+Add your firebase config info on the Database class to use the database functionality
+
